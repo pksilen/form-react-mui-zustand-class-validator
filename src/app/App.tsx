@@ -22,15 +22,13 @@ const theme = createTheme({
 
 export default function App() {
   return (
-    <div className={classNames.container}>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <main className={classNames.container}>
-          <UserRegistration />
-          <div className={classNames.verticalDivider}></div>
-          <UserList />
-        </main>
-      </ThemeProvider>
-    </div>
+    <ThemeProvider theme={theme}>
+      <CssBaseline />
+      <main className={classNames.container}>
+        <UserRegistration />
+        <div className={classNames.verticalDivider}></div>
+        <UserList />
+      </main>
+    </ThemeProvider>
   );
 }
