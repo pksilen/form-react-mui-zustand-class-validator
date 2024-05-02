@@ -1,0 +1,16 @@
+{
+  "extends": "stylelint-config-standard-scss",
+  "plugins": [
+    "stylelint-declaration-block-no-ignored-properties",
+    "stylelint-order",
+    "stylelint-scss",
+    "stylelint-use-logical-spec",
+    "stylelint-use-nesting"
+  ],
+  "rules": {
+    "csstools/use-nesting": "always",
+    "liberty/use-logical-spec": "always",
+    "order/properties-alphabetical-order": true,
+    "plugin/declaration-block-no-ignored-properties": true
+  }
+}

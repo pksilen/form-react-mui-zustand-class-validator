@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  gap: 80px;
+  margin-top: 10px
+}
+
+.verticalDivider {
+  border-left: 1px solid gray;
+  width: 0;
+}
