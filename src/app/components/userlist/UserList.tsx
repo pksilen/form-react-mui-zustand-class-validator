@@ -1,6 +1,6 @@
-import useUserStore from '../../stores/userStore';
+import { useUserStore } from '../../stores/userStore';
 
-export default function UserList() {
+export const UserList = () => {
   const users = useUserStore((store) => store.users);
 
   const userListItems = users.map(
@@ -12,9 +12,9 @@ export default function UserList() {
   );
 
   return (
-    <div>
+    <section>
       <h2>Users</h2>
       <ul>{userListItems}</ul>
-    </div>
+    </section>
   );
-}
+};

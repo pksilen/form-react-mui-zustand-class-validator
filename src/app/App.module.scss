@@ -1,10 +1,13 @@
-.container {
+.main {
   display: flex;
   gap: 80px;
-  margin-top: 10px
+  margin-left: 20px;
+  margin-top: 10px;
+
+  .verticalDivider {
+    border-left: 1px solid gray;
+    width: 0;
+  }
 }
 
-.verticalDivider {
-  border-left: 1px solid gray;
-  width: 0;
-}
+

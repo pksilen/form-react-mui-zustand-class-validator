@@ -1,7 +1,7 @@
 import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
 import classNames from './App.module.scss';
-import UserList from './views/userlist/UserList';
-import UserRegistration from './views/userregistration/UserRegistration';
+import { UserList } from './components/userlist/UserList';
+import { UserRegistration } from './components/userregistration/UserRegistration';
 
 const theme = createTheme({
   palette: {
@@ -24,7 +24,7 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <main className={classNames.container}>
+      <main className={classNames.main}>
         <UserRegistration />
         <div className={classNames.verticalDivider}></div>
         <UserList />

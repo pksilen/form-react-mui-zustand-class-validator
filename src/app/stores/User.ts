@@ -3,24 +3,24 @@ import { IsEmail, IsNotEmpty } from 'class-validator';
 export class User {
   id?: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'First name is required' })
   firstName: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Last name is required' })
   lastName: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Street address is required' })
   streetAddress: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'City is required' })
   city: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Zip code is required' })
   zipCode: string;
 
-  @IsEmail()
+  @IsEmail(undefined, { message: 'Email must be a valid email address' })
   email: string;
 
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Phone number is required' })
   phoneNumber: string;
 }

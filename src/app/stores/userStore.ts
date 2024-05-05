@@ -1,30 +1,30 @@
 import { create } from 'zustand';
-import userService from '../services/FakeUserService';
+import { userService } from '../services/FakeUserService';
 import { User } from './User';
 
-interface State {
+type State = {
   error: Error | null;
   users: User[];
-}
+};
 
-interface Actions {
+type Actions = {
   createUser: (user: User) => Promise<boolean>;
   fetchUsers: () => Promise<void>;
-}
+};
 
 type UserStore = State & { actions: Actions };
 
-const useUserStore = create<UserStore>()((setState, getState) => ({
+export const useUserStore = create<UserStore>()((setState, getState) => ({
   error: null,
   users: [],
 
   actions: {
-    createUser: async (inputUser: User) => {
+    createUser: async (user: User) => {
       let didSucceed = true;
 
       try {
-        const user = await userService.createUser(inputUser);
-        setState({ error: null, users: [...getState().users, user] });
+        const createdUser = await userService.createUser(user);
+        setState({ error: null, users: [...getState().users, createdUser] });
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setState({ error });
@@ -40,5 +40,3 @@ const useUserStore = create<UserStore>()((setState, getState) => ({
     }
   }
 }));
-
-export default useUserStore;
