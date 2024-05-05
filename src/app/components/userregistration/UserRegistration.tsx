@@ -9,7 +9,6 @@ import { useUserStore } from '../../stores/userStore';
 import classes from './UserRegistration.module.scss';
 
 const ControlledFormTextInput = createControlledFormInput<TextInputProps, User>(TextInput, {
-  className: classes.textInput,
   maxLength: 128,
   required: true
 });
