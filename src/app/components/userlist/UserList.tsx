@@ -1,4 +1,4 @@
-import { useUserStore } from '../../stores/userStore';
+import { useUserStore } from 'app/stores/userStore';
 
 export const UserList = () => {
   const users = useUserStore((store) => store.users);

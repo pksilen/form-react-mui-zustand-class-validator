@@ -1,11 +1,11 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { FieldPath, SubmitHandler, useForm } from 'react-hook-form';
-import { ErrorAlert } from '../../common/components/stateless/alerts/ErrorAlert';
-import { SubmitButton } from '../../common/components/stateless/buttons/SubmitButton';
-import { createControlledFormInput } from '../../common/components/stateless/input/createControlledFormInput';
-import { TextInput, TextInputProps } from '../../common/components/stateless/input/TextInput';
-import { User } from '../../stores/User';
-import { useUserStore } from '../../stores/userStore';
+import { ErrorAlert } from 'app/common/components/stateless/alerts/ErrorAlert';
+import { SubmitButton } from 'app/common/components/stateless/buttons/SubmitButton';
+import { TextInput, TextInputProps } from 'app/common/components/stateless/input/TextInput';
+import { createControlledFormInput } from 'app/common/components/stateless/input/createControlledFormInput';
+import { User } from 'app/stores/User';
+import { useUserStore } from 'app/stores/userStore';
 import classes from './UserRegistration.module.scss';
 
 const ControlledFormTextInput = createControlledFormInput<TextInputProps, User>(TextInput, {

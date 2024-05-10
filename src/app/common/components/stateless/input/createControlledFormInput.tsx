@@ -1,6 +1,6 @@
+import camelCaseIdentifierToWords from 'app/utils/camelCaseIdentifierToWords';
 import React from 'react';
 import { Control, Controller, FieldErrors, FieldPath, FieldValues } from 'react-hook-form';
-import camelCaseIdentifierToWords from '../../../../utils/camelCaseIdentifierToWords';
 
 export const createControlledFormInput =
   <TInputProps, TFormSchema extends FieldValues>(
