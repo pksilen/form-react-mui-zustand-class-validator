@@ -3,7 +3,7 @@ import { FieldPath, SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorAlert } from 'app/common/components/stateless/alerts/ErrorAlert';
 import { SubmitButton } from 'app/common/components/stateless/buttons/SubmitButton';
 import { TextInput, TextInputProps } from 'app/common/components/stateless/input/TextInput';
-import { createControlledFormInput } from 'app/common/components/stateless/input/createControlledFormInput';
+import { createControlledFormInput } from 'app/common/components/stateless/input/factories/createControlledFormInput';
 import { User } from 'app/stores/User';
 import { useUserStore } from 'app/stores/userStore';
 import classes from './UserRegistration.module.scss';
@@ -25,7 +25,7 @@ const defaultValues = {
 
 export const UserRegistration = () => {
   const error = useUserStore((store) => store.error);
-  const createUser = useUserStore((store) => store.actions.createUser);
+  const registerUser = useUserStore((store) => store.actions.registerUser);
 
   const {
     control,
@@ -38,9 +38,9 @@ export const UserRegistration = () => {
   });
 
   const onSubmit: SubmitHandler<User> = async (user) => {
-    const userWasCreated = await createUser(user);
+    const userWasRegistered = await registerUser(user);
 
-    if (userWasCreated) {
+    if (userWasRegistered) {
       resetForm();
     }
   };

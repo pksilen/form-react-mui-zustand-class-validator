@@ -1,4 +1,4 @@
-import { createTheme, CssBaseline, ThemeProvider } from '@mui/material';
+import { CssBaseline, ThemeProvider, createTheme } from '@mui/material';
 import classNames from './App.module.scss';
 import { UserList } from './components/userlist/UserList';
 import { UserRegistration } from './components/userregistration/UserRegistration';

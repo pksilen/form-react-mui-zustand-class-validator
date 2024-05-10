@@ -8,7 +8,7 @@ type State = {
 };
 
 type Actions = {
-  createUser: (user: User) => Promise<boolean>;
+  registerUser: (user: User) => Promise<boolean>;
   fetchUsers: () => Promise<void>;
 };
 
@@ -19,19 +19,19 @@ export const useUserStore = create<UserStore>()((setState, getState) => ({
   users: [],
 
   actions: {
-    createUser: async (user: User) => {
-      let didSucceed = true;
+    registerUser: async (user: User) => {
+      let userWasRegistered = true;
 
       try {
-        const createdUser = await userService.createUser(user);
-        setState({ error: null, users: [...getState().users, createdUser] });
+        const registeredUser = await userService.registerUser(user);
+        setState({ error: null, users: [...getState().users, registeredUser] });
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setState({ error });
-        didSucceed = false;
+        userWasRegistered = false;
       }
 
-      return didSucceed;
+      return userWasRegistered;
     },
 
     fetchUsers: async () => {
