@@ -1,9 +1,9 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
 import { FieldPath, SubmitHandler, useForm } from 'react-hook-form';
-import { ErrorAlert } from '../../common/components/presentational/alerts/ErrorAlert';
-import { SubmitButton } from '../../common/components/presentational/buttons/SubmitButton';
-import { createControlledFormInput } from '../../common/components/presentational/factories/createControlledFormInput';
-import { TextInput, TextInputProps } from '../../common/components/presentational/input/TextInput';
+import { ErrorAlert } from '../../common/components/stateless/alerts/ErrorAlert';
+import { SubmitButton } from '../../common/components/stateless/buttons/SubmitButton';
+import { createControlledFormInput } from '../../common/components/stateless/input/createControlledFormInput';
+import { TextInput, TextInputProps } from '../../common/components/stateless/input/TextInput';
 import { User } from '../../stores/User';
 import { useUserStore } from '../../stores/userStore';
 import classes from './UserRegistration.module.scss';
@@ -13,6 +13,16 @@ const ControlledFormTextInput = createControlledFormInput<TextInputProps, User>(
   required: true
 });
 
+const defaultValues = {
+  firstName: '',
+  lastName: '',
+  streetAddress: '',
+  zipCode: '',
+  city: '',
+  email: '',
+  phoneNumber: ''
+};
+
 export const UserRegistration = () => {
   const error = useUserStore((store) => store.error);
   const createUser = useUserStore((store) => store.actions.createUser);
@@ -21,25 +31,17 @@ export const UserRegistration = () => {
     control,
     formState: { errors },
     handleSubmit,
-    reset
+    reset: resetForm
   } = useForm<User>({
-    defaultValues: {
-      firstName: '',
-      lastName: '',
-      streetAddress: '',
-      zipCode: '',
-      city: '',
-      email: '',
-      phoneNumber: ''
-    },
+    defaultValues,
     resolver: classValidatorResolver(User)
   });
 
   const onSubmit: SubmitHandler<User> = async (user) => {
-    const didSucceed = await createUser(user);
+    const userWasCreated = await createUser(user);
 
-    if (didSucceed) {
-      reset();
+    if (userWasCreated) {
+      resetForm();
     }
   };
 
