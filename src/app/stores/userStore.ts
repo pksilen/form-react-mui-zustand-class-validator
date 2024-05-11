@@ -20,18 +20,17 @@ export const useUserStore = create<UserStore>()((setState, getState) => ({
 
   actions: {
     registerUser: async (user: User) => {
-      let userWasRegistered = true;
+      let registeredUser: User | undefined;
 
       try {
-        const registeredUser = await userService.registerUser(user);
+        registeredUser = await userService.registerUser(user);
         setState({ error: null, users: [...getState().users, registeredUser] });
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         setState({ error });
-        userWasRegistered = false;
       }
 
-      return userWasRegistered;
+      return !!registeredUser;
     },
 
     fetchUsers: async () => {

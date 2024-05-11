@@ -1,12 +1,12 @@
 import { classValidatorResolver } from '@hookform/resolvers/class-validator';
-import { FieldPath, SubmitHandler, useForm } from 'react-hook-form';
+import { FieldPath, useForm } from 'react-hook-form';
 import { ErrorAlert } from 'app/common/components/stateless/alerts/ErrorAlert';
 import { SubmitButton } from 'app/common/components/stateless/buttons/SubmitButton';
 import { TextInput, TextInputProps } from 'app/common/components/stateless/input/TextInput';
 import { createControlledFormInput } from 'app/common/components/stateless/input/factories/createControlledFormInput';
 import { User } from 'app/stores/User';
 import { useUserStore } from 'app/stores/userStore';
-import classes from './UserRegistration.module.scss';
+import classes from './UserRegistrationForm.module.scss';
 
 const ControlledFormTextInput = createControlledFormInput<TextInputProps, User>(TextInput, {
   maxLength: 128,
@@ -23,13 +23,13 @@ const defaultValues = {
   phoneNumber: ''
 };
 
-export const UserRegistration = () => {
+export const UserRegistrationForm = () => {
   const error = useUserStore((store) => store.error);
   const registerUser = useUserStore((store) => store.actions.registerUser);
 
   const {
-    control,
-    formState: { errors },
+    control: formControl,
+    formState: { errors: formErrors },
     handleSubmit,
     reset: resetForm
   } = useForm<User>({
@@ -37,20 +37,24 @@ export const UserRegistration = () => {
     resolver: classValidatorResolver(User)
   });
 
-  const onSubmit: SubmitHandler<User> = async (user) => {
+  const handleUserRegistration = handleSubmit(async (user) => {
     const userWasRegistered = await registerUser(user);
 
     if (userWasRegistered) {
       resetForm();
     }
-  };
+  });
 
-  const createTextInput = (name: FieldPath<User>) => (
-    <ControlledFormTextInput control={control} errors={errors} name={name} />
+  const createTextInput = (formFieldName: FieldPath<User>) => (
+    <ControlledFormTextInput
+      formControl={formControl}
+      formErrors={formErrors}
+      formFieldName={formFieldName}
+    />
   );
 
   return (
-    <form className={classes.form} onSubmit={handleSubmit(onSubmit)}>
+    <form className={classes.form} onSubmit={handleUserRegistration}>
       <fieldset className={classes.inlineFields}>
         {createTextInput('firstName')}
         {createTextInput('lastName')}
