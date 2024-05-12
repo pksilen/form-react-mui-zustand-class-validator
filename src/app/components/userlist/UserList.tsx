@@ -7,7 +7,7 @@ export const UserList = () => {
     ({ id, firstName, lastName, streetAddress, zipCode, city, email, phoneNumber }) => (
       <li
         key={id}
-      >{`${firstName}, ${lastName}, ${streetAddress}, ${zipCode}, ${city}, ${email} ${phoneNumber}`}</li>
+      >{`${firstName}, ${lastName}, ${streetAddress}, ${zipCode}, ${city}, ${email}, ${phoneNumber}`}</li>
     )
   );
 

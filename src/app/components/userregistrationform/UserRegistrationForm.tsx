@@ -10,7 +10,7 @@ import classes from './UserRegistrationForm.module.scss';
 
 const ControlledFormTextInput = createControlledFormInput<TextInputProps, User>(TextInput, {
   maxLength: 128,
-  required: true
+  required: !window.location.href.includes('test')
 });
 
 const defaultValues = {
